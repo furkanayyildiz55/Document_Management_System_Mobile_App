@@ -1,5 +1,7 @@
 import 'dart:ui';
 
+import 'package:document_management_system/signinpage.dart';
+import 'package:document_management_system/verification_response.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -23,7 +25,15 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
         title: Text("Belge Doğrulama"),
         actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.login)),
+          IconButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SignInPage(),
+                    ));
+              },
+              icon: const Icon(Icons.login)),
         ],
         elevation: 0,
       ),
@@ -73,9 +83,14 @@ class _HomePageState extends State<HomePage> {
             ElevatedButton.icon(
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
-                  print("sorgulanıyor");
                   verificationCode = textController.text;
-                  print(verificationCode);
+                  print("sorgulanıyor");
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            VerificationResponse(verificationCode: verificationCode),
+                      ));
                 }
               },
               icon: const Icon(Icons.find_in_page, size: 22),

@@ -1,4 +1,5 @@
 import 'package:document_management_system/homepage.dart';
+import 'package:document_management_system/signinpage.dart';
 import 'package:document_management_system/verification_response.dart';
 import 'package:flutter/material.dart';
 
@@ -13,9 +14,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         title: 'Flutter Demo',
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          primarySwatch: Colors.red,
+          primarySwatch: Colors.blue,
         ),
-        home: const VerificationResponse());
+        home: const HomePage());
   }
 }
