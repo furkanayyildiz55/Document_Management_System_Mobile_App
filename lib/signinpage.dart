@@ -2,7 +2,9 @@ import 'package:document_management_system/document_get_page.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import './fetchservice/SignIn.dart';
+import 'constant/blurry_dialog.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
@@ -19,6 +21,13 @@ class _SignInPageState extends State<SignInPage> {
   String Mail = "";
   String Password = "";
   String signInError = "";
+  bool hasInternet = false;
+
+  @override
+  void initState() {
+    super.initState();
+    EthernetConnection();
+  }
 
   bool isValidEmail(String email) {
     // E-posta adresini doğrulamak için düzenli ifade kullanın
@@ -130,7 +139,7 @@ class _SignInPageState extends State<SignInPage> {
                           context,
                           MaterialPageRoute(
                               builder: (context) => DocumentGetPage(
-                                    studentID: "1",
+                                    studentID: signIn.student!.studentID!.toString(),
                                   )),
                         );
                       } else {
@@ -160,5 +169,28 @@ class _SignInPageState extends State<SignInPage> {
         ),
       ),
     );
+  }
+
+  _showDialog(BuildContext context) {
+    continueCallBack() => {
+          Navigator.of(context).pop(),
+          EthernetConnection()
+          // code on continue comes here
+        };
+    BlurryDialog alert = BlurryDialog("Uyarı!", "İnternet bağlanatınız yok !", continueCallBack);
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
+  EthernetConnection() async {
+    hasInternet = await InternetConnectionChecker().hasConnection;
+    if (!hasInternet) {
+      _showDialog(context);
+    }
   }
 }

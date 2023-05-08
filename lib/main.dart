@@ -1,3 +1,5 @@
+import 'package:document_management_system/document_get_page.dart';
+import 'package:document_management_system/document_view.dart';
 import 'package:document_management_system/homepage.dart';
 import 'package:document_management_system/signinpage.dart';
 import 'package:document_management_system/verification_response.dart';
@@ -18,6 +20,6 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const HomePage());
+        home: HomePage());
   }
 }

@@ -3,7 +3,10 @@ import 'dart:ui';
 import 'package:document_management_system/signinpage.dart';
 import 'package:document_management_system/verification_response.dart';
 import 'package:flutter/material.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:lottie/lottie.dart';
+
+import 'constant/blurry_dialog.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -16,6 +19,13 @@ class _HomePageState extends State<HomePage> {
   final _formKey = GlobalKey<FormState>();
   TextEditingController textController = TextEditingController();
   String verificationCode = "";
+  bool hasInternet = false;
+
+  @override
+  void initState() {
+    super.initState();
+    EthernetConnection();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -107,5 +117,28 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
+  }
+
+  _showDialog(BuildContext context) {
+    continueCallBack() => {
+          Navigator.of(context).pop(),
+          EthernetConnection()
+          // code on continue comes here
+        };
+    BlurryDialog alert = BlurryDialog("Uyarı!", "İnternet bağlanatınız yok !", continueCallBack);
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
+  EthernetConnection() async {
+    hasInternet = await InternetConnectionChecker().hasConnection;
+    if (!hasInternet) {
+      _showDialog(context);
+    }
   }
 }

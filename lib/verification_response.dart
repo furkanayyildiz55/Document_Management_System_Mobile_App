@@ -156,7 +156,7 @@ class _VerificationResponseState extends State<VerificationResponse> {
       ),
       child: Padding(
         padding: EdgeInsets.all(15.0),
-        child: Lottie.asset("assets/lottie/lottie_search_document.json"),
+        child: Center(child: Lottie.asset("assets/lottie/lottie_search_document.json")),
       ),
     );
   }
