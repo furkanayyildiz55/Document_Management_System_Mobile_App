@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:document_management_system/constant/inform_dialog.dart';
 import 'package:document_management_system/signinpage.dart';
 import 'package:document_management_system/verification_response.dart';
 import 'package:flutter/material.dart';
@@ -111,11 +112,29 @@ class _HomePageState extends State<HomePage> {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 10),
-              child: TextButton(onPressed: () {}, child: const Text("Belgemi Nasıl Doğrularım ?")),
+              child: TextButton(
+                  onPressed: () {
+                    _informDialog(context);
+                    print("object");
+                  },
+                  child: const Text("Belgemi Nasıl Doğrularım ?")),
             ),
           ],
         ),
       ),
+    );
+  }
+
+  _informDialog(BuildContext context) {
+    continueCallBack() => {
+          Navigator.of(context).pop(),
+        };
+    InformDialog informDialog = InformDialog(continueCallBack);
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return informDialog;
+      },
     );
   }
 
