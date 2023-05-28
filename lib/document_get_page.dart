@@ -16,7 +16,7 @@ class DocumentGetPage extends StatefulWidget {
 class _DocumentGetPageState extends State<DocumentGetPage> {
   Future<DocumentGet?> fetchDocumentGet(String studentID) async {
     final response = await http
-        .get(Uri.parse('https://bysdemo.aymodamobilya.com/api/DocumentApi?StudentID=${studentID}'));
+        .get(Uri.parse('https://bys.furkanayyildiz.net/api/DocumentApi?StudentID=${studentID}'));
     if (response.statusCode == 200) {
       return DocumentGet.fromJson(json.decode(response.body));
     } else {

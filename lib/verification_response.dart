@@ -14,8 +14,8 @@ class VerificationResponse extends StatefulWidget {
 
 class _VerificationResponseState extends State<VerificationResponse> {
   Future<DocumentVerification?> fetchDocumentVerification(String documentCode) async {
-    final response = await http.get(Uri.parse(
-        'https://bysdemo.aymodamobilya.com/api/DocumentVerification?Code=${documentCode}'));
+    final response = await http.get(
+        Uri.parse('https://bys.furkanayyildiz.net/api/DocumentVerification?Code=${documentCode}'));
     if (response.statusCode == 200) {
       return DocumentVerification.fromJson(json.decode(response.body));
     } else {

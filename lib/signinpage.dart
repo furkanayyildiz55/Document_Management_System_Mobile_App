@@ -42,7 +42,7 @@ class _SignInPageState extends State<SignInPage> {
   }
 
   Future<SignIn> signIn(String mail, String password) async {
-    var url = Uri.parse('https://bysdemo.aymodamobilya.com/Api/SignIn');
+    var url = Uri.parse('https://bys.furkanayyildiz.net/Api/SignIn');
     var headers = {'Content-Type': 'application/json'};
     var body = jsonEncode({'Email': '$mail', 'Password': '$password'});
     var response = await http.post(url, headers: headers, body: body);

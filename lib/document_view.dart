@@ -7,7 +7,7 @@ class DocumentView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String server = "https://bysdemo.aymodamobilya.com/";
+    String server = "https://bys.furkanayyildiz.net/";
     return Scaffold(
       appBar: AppBar(
         title: Text("Belge Görüntüleme"),
