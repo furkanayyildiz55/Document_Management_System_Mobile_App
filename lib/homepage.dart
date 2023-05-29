@@ -144,7 +144,7 @@ class _HomePageState extends State<HomePage> {
           EthernetConnection()
           // code on continue comes here
         };
-    BlurryDialog alert = BlurryDialog("Uyarı!", "İnternet bağlanatınız yok !", continueCallBack);
+    BlurryDialog alert = BlurryDialog("Uyarı!", "İnternet bağlantınız yok !", continueCallBack);
 
     showDialog(
       context: context,
